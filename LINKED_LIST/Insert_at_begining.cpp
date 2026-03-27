@@ -10,11 +10,14 @@ typedef struct node{
 Node* getnode(int);
 Node* build123();
 void display(Node *);
+node * InsertAtBegining(node*,int);
 
 int main(){
    Node *HP;
    HP=build123();
    display(HP); 
+    HP=InsertAtBegining(HP,4);
+     display(HP); 
 }
 
 Node* getnode(int x){//creat a node and return address of node
@@ -42,5 +45,13 @@ void display(Node *s){//count node of list
         count ++;
      printf("%d \n",s->data );
      s=s->next;
-    } cout<<"no. of node is:"<<count;
+    } cout<<"no. of node is:"<<count<<endl;
 }
+
+node * InsertAtBegining(node*s,int x){
+    node *A;
+    A =getnode(x);
+    A->next=s;
+    return A;
+}
+
