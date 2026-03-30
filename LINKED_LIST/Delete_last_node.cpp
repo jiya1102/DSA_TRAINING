@@ -10,15 +10,16 @@ typedef struct node{
 Node* getnode(int);
 Node* build123();
 void display(Node *);
-void InsertAtMiddle(int,int);
+void Delete_last_node();
 
-Node *HP;
+ Node *HP;
 int main(){
-
-  HP=build123();
+   HP=build123();
    display(HP); 
-   InsertAtMiddle(4,2);
-   display(HP); 
+   Delete_last_node();
+   display(HP);
+   
+    
 }
 
 Node* getnode(int x){//creat a node and return address of node
@@ -49,28 +50,20 @@ void display(Node *s){//count node of list
     } cout<<"no. of node is:"<<count<<endl;
 }
 
-void InsertAtMiddle(int x,int y){
-       node* q= HP;
-       node *p,*r;
-    p =getnode(x);
-
-    if(HP==NULL){//check empty condition
-        free(p);
+void Delete_last_node(){
+    node* q=HP,*r;
+    if(HP==NULL){
         return;
+    }else if(HP->next==NULL){
+     free(HP);
+     HP=NULL;
+    }else{
+        while(q->next!=NULL){
+            r=q;
+            q=q->next;
+        }
+        free(q);
+        r->next=NULL;
     }
-    else{
-       while(q->data!=y&&q->next!=NULL){
-       q=q->next;
-   }
-   if(q->data==y){
-    r=q->next;
-    q->next =p;
-    p->next=r;
-   }
-   else{
-    free(p);
-    return;
-   }
-}
 }
 
